@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GemasGo - Plataforma de Monetización</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            overflow-x: hidden;
+            touch-action: pan-y;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .gradient-hero {
+            background: linear-gradient(145deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+        }
+
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .gem-float {
+            animation: gemFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes gemFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .pulse-gem {
+            animation: pulseGem 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGem {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .bottom-nav {
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumb::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+
+        .notification-dot {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .safe-area-top {
+            padding-top: env(safe-area-inset-top);
+        }
+
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .custom-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .story-ring {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            padding: 2px;
+        }
+
+        .tap-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tap-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .tap-effect:active::after {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage" class="min-h-screen gradient-hero relative">
+        <!-- Floating Gems Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="gem-float absolute top-20 left-10 text-white/20">
+                <i class="fas fa-gem text-3xl"></i>
+            </div>
+            <div class="gem-float absolute top-40 right-8 text-white/15" style="animation-delay: 1s;">
+                <i class="fas fa-gem text-2xl"></i>
+            </div>
+            <div class="gem-float absolute bottom-32 left-1/3 text-white/10" style="animation-delay: 2s;">
+                <i class="fas fa-gem text-4xl"></i>
+            </div>
+        </div>
+
+        <!-- Safe Area Top -->
+        <div class="safe-area-top"></div>
+
+        <!-- Language Selector -->
+        <div class="absolute top-4 right-4 z-20 safe-area-top">
+            <div class="glass-morphism rounded-full px-3 py-2 flex items-center space-x-2 tap-effect">
+                <img id="langFlag" src="https://flagcdn.com/w40/es.png" alt="Language" class="w-6 h-4 rounded">
+                <select id="languageSelect" class="bg-transparent text-sm font-medium outline-none">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="zh">中文</option>
+                    <option value="hi">हि</option>
+                    <option value="ar">ع</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 px-4 pt-16 pb-8 min-h-screen flex flex-col justify-center">
+            <div class="glass-morphism rounded-3xl p-6 shadow-2xl fade-in max-w-sm mx-auto w-full">
+                <!-- Logo -->
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-xl mb-3 gem-float">
+                        <i class="fas fa-gem text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold text-white mb-1">GemasGo</h1>
+                    <p class="text-white/90 text-sm">Gana con anuncios y videos</p>
+                </div>
+
+                <!-- Welcome Banner -->
+                <div class="bg-white/20 backdrop-blur rounded-2xl p-4 mb-6 border border-white/30">
+                    <p class="text-white text-center text-sm font-medium">
+                        <i class="fas fa-sparkles mr-2 text-yellow-300"></i>
+                        ¡Únete a millones ganando diariamente!
+                    </p>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" class="space-y-4">
+                    <div>
+                        <label class="text-white/90 text-sm font-medium mb-1 block">Nombre</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-3.5 text-gray-500 text-sm"></i>
+                            <input type="text" required placeholder="Tu nombre" 
+                                   class="w-full pl-10 pr-4 py-3 bg-white/95 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-white/50 transition">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="text-white/90 text-sm font-medium mb-1 block">Email (Opcional)</label>
+                        <div class="relative">
+                            <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-500 text-sm"></i>
+                            <input type="email" placeholder="tu@email.com" 
+                                   class="w-full pl-10 pr-4 py-3 bg-white/95 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-white/50 transition">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="text-white/90 text-sm font-medium mb-1 block">Contraseña</label>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-3 top-3.5 text-gray-500 text-sm"></i>
+                            <input type="password" required placeholder="••••••••" 
+                                   class="w-full pl-10 pr-4 py-3 bg-white/95 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-white/50 transition">
+                            <button type="button" onclick="togglePassword(this)" class="absolute right-3 top-3.5 text-gray-500">
+                                <i class="fas fa-eye text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-white text-purple-600 py-3.5 rounded-xl font-bold shadow-lg tap-effect transform active:scale-95 transition">
+                        Crear Cuenta Gratis
+                    </button>
+                </form>
+
+                <!-- Terms -->
+                <div class="mt-5 text-center">
+                    <p class="text-white/80 text-xs mb-2">Al registrarte aceptas nuestros</p>
+                    <div class="flex justify-center space-x-3 text-xs">
+                        <a href="#" class="text-white underline">Términos</a>
+                        <span class="text-white/60">•</span>
+                        <a href="#" class="text-white underline">Privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-200 safe-area-top">
+            <div class="flex items-center justify-between px-4 py-3">
+                <button id="menuBtn" class="p-2 -ml-2 tap-effect rounded-lg">
+                    <i class="fas fa-bars text-gray-700 text-xl"></i>
+                </button>
+                
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-gem text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg">GemasGo</span>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button class="p-2 tap-effect rounded-lg relative">
+                        <i class="fas fa-bell text-gray-700 text-xl"></i>
+                        <span class="notification-dot absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                    </button>
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+                        U
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Overlay -->
+        <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black/50 z-30"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 w-72 bg-white transform -translate-x-full transition-transform duration-300 z-40 shadow-2xl">
+            <div class="safe-area-top bg-gradient-to-r from-purple-600 to-pink-600 p-4 pt-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-white font-bold text-lg">Menu</h2>
+                    <button id="closeMenu" class="text-white p-1">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="bg-white/20 backdrop-blur rounded-xl p-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-purple-600 font-bold">U</span>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold">Usuario Demo</p>
+                            <p class="text-white/80 text-sm flex items-center">
+                                <i class="fas fa-gem mr-1 text-xs"></i>
+                                0 Gemas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="p-4 custom-scroll overflow-y-auto" style="height: calc(100% - 180px);">
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-home text-purple-600 w-5"></i>
+                        <span class="font-medium">Inicio</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-video text-purple-600 w-5"></i>
+                        <span class="font-medium">Videos</span>
+                        <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">Nuevo</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-ad text-purple-600 w-5"></i>
+                        <span class="font-medium">Ver Anuncios</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-gem text-purple-600 w-5"></i>
+                        <span class="font-medium">Mis Gemas</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-chart-line text-purple-600 w-5"></i>
+                        <span class="font-medium">Estadísticas</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-users text-purple-600 w-5"></i>
+                        <span class="font-medium">Referidos</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-purple-50 tap-effect">
+                        <i class="fas fa-cog text-purple-600 w-5"></i>
+                        <span class="font-medium">Configuración</span>
+                    </a>
+                </div>
+
+                <div class="mt-6 pt-6 border-t">
+                    <button id="logoutBtn" class="flex items-center space-x-3 p-3 rounded-xl bg-gray-100 w-full tap-effect">
+                        <i class="fas fa-sign-out-alt text-gray-600 w-5"></i>
+                        <span class="font-medium text-gray-700">Cerrar Sesión</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="pt-16 pb-20 px-4 custom-scroll" style="padding-top: calc(60px + env(safe-area-inset-top));">
+            <!-- Welcome Section -->
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-4 mb-6 text-white slide-up">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-xl font-bold mb-1">¡Hola, Usuario! 👋</h2>
+                        <p class="text-white/90 text-sm">Gana hasta 100 gemas hoy</p>
+                    </div>
+                    <div class="pulse-gem">
+                        <i class="fas fa-gem text-3xl text-white/80"></i>
+                    </div>
+                </div>
+                <div class="mt-4 bg-white/20 backdrop-blur rounded-xl p-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm">Progreso diario</span>
+                        <span class="text-sm font-bold">0/100</span>
+                    </div>
+                    <div class="mt-2 bg-white/30 rounded-full h-2 overflow-hidden">
+                        <div class="bg-white h-full w-0 transition-all duration-500"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="bg-white rounded-2xl p-4 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-gem text-purple-600"></i>
+                        </div>
+                        <span class="text-2xl font-bold">0</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Total Gemas</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-4 shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-fire text-green-600"></i>
+                        </div>
+                        <span class="text-2xl font-bold">1</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Racha días</p>
+                </div>
+            </div>
+
+            <!-- Videos Section -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">Videos Promocionados</h3>
+                    <a href="#" class="text-purple-600 text-sm font-medium">Ver todos</a>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm tap-effect">
+                        <div class="video-thumb aspect-video flex items-center justify-center">
+                            <i class="fas fa-play-circle text-white text-3xl"></i>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-semibold text-sm text-gray-800 truncate">Video Premium</h4>
+                            <p class="text-xs text-gray-500 mt-1">1.2K vistas</p>
+                            <div class="mt-2 flex items-center justify-between">
+                                <span class="text-xs bg-purple-100 text-purple-600 px-2 py-0.5 rounded-full font-medium">+5 💎</span>
+                                <span class="text-xs text-gray-400">3:45</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm tap-effect">
+                        <div class="video-thumb aspect-video flex items-center justify-center" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);">
+                            <i class="fas fa-play-circle text-white text-3xl"></i>
+                        </div>
+                        <div class="p-3">
+                            <h4 class
