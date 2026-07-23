@@ -6,6 +6,6 @@
   "description": "Aplicación frontend GemasGo con anuncios recompensados, juegos, tienda, promociones, admin e IA simulada.",
   "scripts": {
     "start": "python3 -m http.server 4173",
-    "check": "node --check service-worker.js && find src -maxdepth 1 -name '*.js' -print -exec node --check {} \\;"
+    "check": "node --check service-worker.js && find src -name '*.js' -print -exec node --check {} \\;"
   }
 }

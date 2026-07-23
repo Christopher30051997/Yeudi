@@ -1,7 +1,7 @@
 const CACHE_NAME = 'gemasgo-static-v2';
 const ASSETS = [
-  './', './index.html', './styles.css', './manifest.webmanifest', './assets/icons/gemasgo.svg',
-  './src/app.js', './src/storage.js', './src/state.js', './src/auth.js', './src/games.js', './src/ads.js',
+  './', './index.html', './admin.html', './styles.css', './manifest.webmanifest', './assets/icons/gemasgo.svg',
+  './src/app.js', './src/adminApp.js', './src/storage.js', './src/state.js', './src/auth.js', './src/games.js', './src/ads.js',
   './src/store.js', './src/promotions.js', './src/admin.js', './src/notifications.js', './src/utils.js',
 ];
 

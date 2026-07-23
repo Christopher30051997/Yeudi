@@ -13,14 +13,14 @@ export function renderAdminView() {
   const promoRows = appState.promotionQueue.map((promo, index) => `<tr><td>${promo.platform}</td><td>${promo.target}</td><td>${promo.status}</td><td><button data-approve-promo="${index}" type="button">Aprobar</button><button data-reject-promo="${index}" type="button">Rechazar</button></td></tr>`).join('');
 
   const view = createElement(`
-    <section class="admin-panel" id="admin">
+    <section class="admin-panel" id="resumen">
       <p class="eyebrow">Panel de administrador privado</p>
       <h2>Control total de GemasGo</h2>
       <div class="admin-kpis"><article><span>Valor admin</span><strong>${report.adminRevenue}</strong></article><article><span>Usuarios activos</span><strong>${report.activeUsers.toLocaleString('es')}</strong></article><article><span>Promos pendientes</span><strong>${report.pendingPromotions}</strong></article></div>
       <div class="admin-grid">${permissions}</div>
-      <div class="table-wrap"><table><thead><tr><th>Video</th><th>Objetivo</th><th>Estado</th><th>Acción</th></tr></thead><tbody>${promoRows}</tbody></table></div>
-      <div class="table-wrap"><table><thead><tr><th>Señal antifraude</th><th>Nivel</th><th>Acción IA</th></tr></thead><tbody>${fraudRows}</tbody></table></div>
-      <div class="ai-grid">${aiCards}</div>
+      <div class="table-wrap" id="promociones-admin"><table><thead><tr><th>Video</th><th>Objetivo</th><th>Estado</th><th>Acción</th></tr></thead><tbody>${promoRows}</tbody></table></div>
+      <div class="table-wrap" id="antifraude-admin"><table><thead><tr><th>Señal antifraude</th><th>Nivel</th><th>Acción IA</th></tr></thead><tbody>${fraudRows}</tbody></table></div>
+      <div class="ai-grid" id="sistemas-admin">${aiCards}</div>
     </section>
   `);
 

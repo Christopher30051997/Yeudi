@@ -40,7 +40,7 @@ export function renderAuthChecklist() {
         <li>Nombre obligatorio y correo opcional.</li>
         <li>Contraseña mínima de 8 caracteres.</li>
         <li>Panel activado al registrarse.</li>
-        <li>Antifraude activo desde la primera recompensa.</li>
+        <li>Revisión de seguridad activa para proteger la cuenta.</li>
       </ul>
     </article>
   `);

@@ -35,7 +35,7 @@ export function renderGamesView() {
         savedGame.plays += 1;
         state.user.gamesPlayed = totalPlays;
       });
-      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total: ${totalPlays}. Recompensa por anuncio: ${reward} GG. IA Antifraude: ${getFraudVerdict(totalPlays)}.`;
+      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total: ${totalPlays}. Anuncio validado: ${reward > 0 ? 'sí' : 'no'}. Seguridad: ${getFraudVerdict(totalPlays)}.`;
     };
     if (shouldShowGameAd(totalPlays)) showAdGate(startGame);
     else startGame();

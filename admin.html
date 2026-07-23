@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GemasGo Admin | Panel privado</title>
+  <meta name="description" content="Panel privado de administración de GemasGo para revisar juegos, anuncios, tienda, promociones y estado del sistema." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/icons/gemasgo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <header class="admin-topbar">
+      <a class="brand" href="index.html" aria-label="Volver a GemasGo"><span class="brand__gem">◆</span><span>GemasGo Admin</span></a>
+      <div class="admin-login-chip">Ruta privada · <code>/admin.html</code></div>
+    </header>
+
+    <main class="admin-layout">
+      <aside class="admin-sidebar" aria-label="Menú administrativo">
+        <a href="#resumen">Resumen</a>
+        <a href="#promociones-admin">Promociones</a>
+        <a href="#antifraude-admin">Antifraude</a>
+        <a href="#sistemas-admin">Sistema</a>
+        <a href="index.html">Ir al panel usuario</a>
+      </aside>
+      <section id="adminMount" class="view-mount" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <script type="module" src="src/adminApp.js"></script>
+</body>
+</html>

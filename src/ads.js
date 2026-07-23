@@ -10,9 +10,9 @@ export function renderAdsView() {
 
   return createElement(`
     <section class="content-card" id="anuncios">
-      <p class="eyebrow">Sistema de anuncios e IA</p>
-      <h2>Ganancias exclusivas por anuncios validados</h2>
-      <div class="revenue-split"><div><strong>20%</strong><span>Usuario</span></div><div><strong>80%</strong><span>Administrador</span></div></div>
+      <p class="eyebrow">Anuncios</p>
+      <h2>Visualiza anuncios disponibles</h2>
+      <p>Al terminar un anuncio, el sistema actualiza tu saldo y guarda el movimiento en la billetera.</p>
       <button class="button button--primary" data-watch-ad="ad-01" type="button">Ver anuncio y ganar</button>
       <div class="table-wrap"><table><thead><tr><th>Anunciante</th><th>Valor</th><th>Vistas</th><th>Usuario</th><th>Admin</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>
     </section>

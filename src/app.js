@@ -6,7 +6,6 @@ import { renderGamesView } from './games.js';
 import { renderAdsView, showAdGate } from './ads.js';
 import { renderStoreView } from './store.js';
 import { renderPromotionsView } from './promotions.js';
-import { renderAdminView } from './admin.js';
 import { renderNotificationsView } from './notifications.js';
 import { setupRegistration } from './auth.js';
 
@@ -17,7 +16,6 @@ const views = {
   store: renderStoreView,
   promotions: renderPromotionsView,
   notifications: renderNotificationsView,
-  admin: renderAdminView,
 };
 
 function currentStats() {
