@@ -3,204 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GemasGo | Monetización, Juegos y Promociones</title>
-  <meta name="description" content="GemasGo es una plataforma moderna para ganar puntos viendo anuncios, jugar online, canjear recompensas y promocionar vídeos." />
+  <title>GemasGo | Plataforma de Monetización</title>
+  <meta name="description" content="GemasGo: juegos instantáneos, anuncios recompensados, tienda, promociones de videos y panel administrador con IA." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero" id="inicio">
-    <nav class="topbar" aria-label="Navegación principal">
-      <a class="brand" href="#inicio" aria-label="GemasGo inicio">
-        <span class="brand__gem">◆</span>
-        <span>GemasGo</span>
-      </a>
-
-      <div class="language-picker" aria-label="Selector de idioma">
-        <button class="language-picker__current" id="languageButton" type="button" aria-haspopup="true" aria-expanded="false">
-          <span id="currentFlag">🌐</span>
-          <span id="currentLanguage">Idioma</span>
-          <span aria-hidden="true">⌄</span>
-        </button>
-        <div class="language-picker__menu" id="languageMenu" role="menu">
-          <button type="button" data-lang="es" data-flag="🇪🇸" role="menuitem">🇪🇸 Español</button>
-          <button type="button" data-lang="en" data-flag="🇺🇸" role="menuitem">🇺🇸 English</button>
-          <button type="button" data-lang="zh" data-flag="🇨🇳" role="menuitem">🇨🇳 中文</button>
-          <button type="button" data-lang="hi" data-flag="🇮🇳" role="menuitem">🇮🇳 हिन्दी</button>
-          <button type="button" data-lang="ar" data-flag="🇸🇦" role="menuitem">🇸🇦 العربية</button>
+  <div id="app" class="app-shell">
+    <header class="public-header" id="inicio">
+      <nav class="topbar" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="GemasGo inicio">
+          <span class="brand__gem">◆</span>
+          <span>GemasGo</span>
+        </a>
+        <div class="language-picker" aria-label="Selector de idioma">
+          <button class="language-picker__current" id="languageButton" type="button" aria-haspopup="true" aria-expanded="false">
+            <span id="currentFlag">🌐</span>
+            <span id="currentLanguage">Idioma</span>
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <div class="language-picker__menu" id="languageMenu" role="menu"></div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <section class="hero__content">
-      <div class="hero__copy">
-        <p class="eyebrow">Plataforma global de monetización</p>
-        <h1>Gana GemasGo viendo anuncios, jugando y promocionando tus vídeos.</h1>
-        <p class="hero__lead">Únete a una comunidad moderna inspirada en redes sociales, con juegos instantáneos, recompensas transparentes, tienda integrada y control inteligente por IA.</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="#registro">Crear cuenta gratis</a>
-          <a class="button button--ghost" href="#panel">Ver panel</a>
-        </div>
-      </div>
-
-      <form class="signup-card" id="registro" aria-label="Formulario de registro">
-        <h2>Regístrate en GemasGo</h2>
-        <label>
-          Nombre
-          <input type="text" name="name" placeholder="Tu nombre" required />
-        </label>
-        <label>
-          Correo electrónico <span>(opcional)</span>
-          <input type="email" name="email" placeholder="correo@ejemplo.com" />
-        </label>
-        <label>
-          Contraseña
-          <input type="password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required />
-        </label>
-        <button class="button button--primary" type="submit">Entrar a mi panel</button>
-        <p class="policy-note">Al registrarte aceptas nuestras políticas de privacidad, uso responsable de anuncios y reglas antifraude.</p>
-      </form>
-    </section>
-  </header>
-
-  <main>
-    <section class="section intro" aria-labelledby="descripcion-title">
-      <div>
-        <p class="eyebrow">Descripción y políticas</p>
-        <h2 id="descripcion-title">Una economía de recompensas clara y segura.</h2>
-      </div>
-      <p>GemasGo permite acumular puntos exclusivamente al ver anuncios validados. La plataforma protege los datos del usuario, evita la manipulación de reproducciones, exige aprobaciones administrativas para promociones y mantiene informes transparentes de ganancias.</p>
-    </section>
-
-    <section class="dashboard" id="panel" aria-labelledby="panel-title">
-      <aside class="sidebar" id="sidebar">
-        <button class="hamburger" id="menuButton" type="button" aria-label="Abrir o cerrar menú" aria-expanded="true">
-          <span></span><span></span><span></span>
-        </button>
-        <a href="#juegos">🎮 Juegos</a>
-        <a href="#anuncios">📺 Anuncios</a>
-        <a href="#tienda">🛒 Tienda</a>
-        <a href="#promociones">🚀 Promociones</a>
-        <a href="#admin">🔐 Admin</a>
-      </aside>
-
-      <div class="dashboard__content">
-        <div class="feed-header">
-          <div>
-            <p class="eyebrow">Panel del usuario</p>
-            <h2 id="panel-title">Bienvenido a tu centro GemasGo</h2>
-          </div>
-          <div class="wallet-card">
-            <span>Saldo</span>
-            <strong>12,480 GG</strong>
+      <section class="hero__content">
+        <div class="hero__copy">
+          <p class="eyebrow">Plataforma global de monetización</p>
+          <h1>Gana GemasGo viendo anuncios, jugando y promocionando tus vídeos.</h1>
+          <p class="hero__lead">Una plataforma moderna inspirada en Facebook con juegos instantáneos, recompensas transparentes, tienda integrada y sistemas de IA para seguridad, pagos y supervisión.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#registro">Crear cuenta gratis</a>
+            <a class="button button--ghost" href="#panel">Explorar panel</a>
           </div>
         </div>
 
-        <section class="stats-grid" aria-label="Resumen de cuenta">
-          <article><span>Vistas válidas</span><strong>248</strong></article>
-          <article><span>Promos activas</span><strong>6</strong></article>
-          <article><span>Juegos jugados</span><strong>93</strong></article>
-          <article><span>Nivel antifraude</span><strong>Seguro</strong></article>
-        </section>
+        <form class="signup-card" id="registro" aria-label="Formulario de registro">
+          <h2>Regístrate</h2>
+          <label>Nombre<input type="text" name="name" placeholder="Tu nombre" required /></label>
+          <label>Correo electrónico <span>(opcional)</span><input type="email" name="email" placeholder="correo@ejemplo.com" /></label>
+          <label>Contraseña<input type="password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required /></label>
+          <button class="button button--primary" type="submit">Entrar a mi panel</button>
+          <p class="policy-note">Al registrarte aceptas la privacidad, uso responsable de anuncios, revisión antifraude y aprobación de promociones.</p>
+        </form>
+      </section>
+    </header>
 
-        <section class="content-card" id="juegos" aria-labelledby="juegos-title">
-          <div class="section-heading">
+    <main>
+      <section class="section intro" aria-labelledby="descripcion-title">
+        <div>
+          <p class="eyebrow">Descripción y políticas</p>
+          <h2 id="descripcion-title">Una economía de recompensas clara y segura.</h2>
+        </div>
+        <p>GemasGo permite acumular puntos exclusivamente viendo anuncios validados. La IA bloquea manipulaciones, registra cada vista, calcula pagos 20/80 y mantiene trazabilidad para usuarios y administradores.</p>
+      </section>
+
+      <section class="dashboard" id="panel" aria-labelledby="panel-title">
+        <aside class="sidebar" id="sidebar">
+          <button class="hamburger" id="menuButton" type="button" aria-label="Abrir o cerrar menú" aria-expanded="true">
+            <span></span><span></span><span></span>
+          </button>
+          <a href="#panel" data-view="home">🏠 Inicio</a>
+          <a href="#juegos" data-view="games">🎮 Juegos</a>
+          <a href="#anuncios" data-view="ads">📺 Anuncios</a>
+          <a href="#tienda" data-view="store">🛒 Tienda</a>
+          <a href="#promociones" data-view="promotions">🚀 Promociones</a>
+          <a href="#admin" data-view="admin">🔐 Admin</a>
+        </aside>
+
+        <div class="dashboard__content">
+          <div class="feed-header">
             <div>
-              <p class="eyebrow">Galería de juegos</p>
-              <h2 id="juegos-title">Juega al instante en 4 columnas</h2>
+              <p class="eyebrow">Panel del usuario</p>
+              <h2 id="panel-title">Bienvenido a tu centro GemasGo</h2>
             </div>
-            <span class="badge">Anuncio antes de iniciar y cada 3 partidas</span>
+            <div class="wallet-card"><span>Saldo</span><strong id="walletBalance">12,480 GG</strong></div>
           </div>
-          <div class="game-grid">
-            <article class="game-card"><span>🏎️</span><h3>Turbo Gem</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🧩</span><h3>Puzzle Mina</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🚀</span><h3>Cosmo GG</h3><button>Jugar</button></article>
-            <article class="game-card"><span>⚽</span><h3>Gol Rápido</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🐉</span><h3>Dragón Click</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🏹</span><h3>Arquero Pro</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🌊</span><h3>Ola Infinita</h3><button>Jugar</button></article>
-            <article class="game-card"><span>🪙</span><h3>Moneda Rush</h3><button>Jugar</button></article>
-          </div>
-        </section>
 
-        <section class="two-column">
-          <article class="content-card" id="anuncios">
-            <p class="eyebrow">Sistema de anuncios e IA</p>
-            <h2>Reparto automático 20/80</h2>
-            <div class="revenue-split">
-              <div><strong>20%</strong><span>Usuario</span></div>
-              <div><strong>80%</strong><span>Administrador</span></div>
-            </div>
-            <p>La IA de Anuncios controla vistas válidas, calcula pagos y alimenta reportes con valor del anuncio, veces visto y pagos realizados.</p>
-          </article>
+          <section class="stats-grid" id="statsGrid" aria-label="Resumen de cuenta"></section>
+          <section id="viewMount" class="view-mount" aria-live="polite"></section>
+        </div>
+      </section>
+    </main>
 
-          <article class="content-card ai-card">
-            <p class="eyebrow">Inteligencia artificial integrada</p>
-            <h2>4 IA trabajando en conjunto</h2>
-            <ul>
-              <li><strong>IA de Anuncios:</strong> controla ganancias y vistas.</li>
-              <li><strong>IA Antifraude:</strong> detecta trampas.</li>
-              <li><strong>IA de Notificación:</strong> envía comprobantes.</li>
-              <li><strong>IA Supervisora:</strong> monitorea estabilidad.</li>
-            </ul>
-          </article>
-        </section>
+    <footer class="footer">
+      <strong>GemasGo</strong>
+      <span>Monetización con anuncios, juegos instantáneos, promociones y control administrativo.</span>
+    </footer>
+  </div>
 
-        <section class="content-card" id="tienda" aria-labelledby="tienda-title">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Tienda GemasGo</p>
-              <h2 id="tienda-title">Canjes, compras y comprobantes</h2>
-            </div>
-          </div>
-          <div class="shop-grid">
-            <article><h3>Diamantes Free Fire</h3><p>3 niveles configurables para canjear diamantes con GemasGo.</p></article>
-            <article><h3>Vidas para juegos</h3><p>Paquetes por cantidad y precio para seguir jugando.</p></article>
-            <article><h3>Comprar GemasGo</h3><p>Pagos con USDT, Bitcoin, Ethereum o Binance Coin.</p></article>
-            <article><h3>Comprobantes</h3><p>Recibe fotos, recibos y mensajes enviados por el administrador.</p></article>
-          </div>
-        </section>
+  <div class="modal" id="adModal" aria-hidden="true" role="dialog" aria-labelledby="adModalTitle">
+    <div class="modal__panel">
+      <p class="eyebrow">Anuncio obligatorio</p>
+      <h2 id="adModalTitle">Mira este anuncio para continuar</h2>
+      <p id="adModalText">La IA de Anuncios validará esta vista y acreditará el 20% al usuario.</p>
+      <div class="ad-progress"><span id="adProgress"></span></div>
+      <button class="button button--primary" id="finishAdButton" type="button" disabled>Validando anuncio...</button>
+    </div>
+  </div>
 
-        <section class="content-card promotion-card" id="promociones" aria-labelledby="promociones-title">
-          <div>
-            <p class="eyebrow">Promociones de vídeos</p>
-            <h2 id="promociones-title">Impulsa YouTube, TikTok o Facebook</h2>
-            <p>Elige duración, vistas o me gusta. La IA calcula el costo en GemasGo y el administrador aprueba la publicación.</p>
-          </div>
-          <form class="promo-form">
-            <input type="url" placeholder="URL del vídeo" aria-label="URL del vídeo" />
-            <select aria-label="Objetivo de promoción">
-              <option>1,000 vistas</option>
-              <option>500 me gusta</option>
-              <option>7 días visible</option>
-            </select>
-            <button type="button">Calcular costo</button>
-          </form>
-        </section>
-
-        <section class="admin-panel" id="admin" aria-labelledby="admin-title">
-          <p class="eyebrow">Panel de administrador privado</p>
-          <h2 id="admin-title">Control total de GemasGo</h2>
-          <div class="admin-grid">
-            <article>Subir nuevos juegos</article>
-            <article>Editar precios y recompensas</article>
-            <article>Aprobar promociones</article>
-            <article>Enviar comprobantes</article>
-            <article>Ver estadísticas</article>
-            <article>Activar o desactivar IAs</article>
-          </div>
-        </section>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <strong>GemasGo</strong>
-    <span>Monetización con anuncios, juegos instantáneos y promociones transparentes.</span>
-  </footer>
-
-  <script src="script.js"></script>
+  <script type="module" src="src/app.js"></script>
 </body>
 </html>

@@ -139,3 +139,34 @@ input, select { width: 100%; border: 1px solid var(--border); border-radius: 14p
   .game-grid, .stats-grid, .shop-grid, .admin-grid { grid-template-columns: 1fr; }
   h1 { font-size: 2.45rem; }
 }
+
+.view-mount { display: grid; gap: 22px; }
+.table-wrap { overflow-x: auto; margin-top: 18px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
+.game-card p { margin: 0 0 6px; color: var(--primary); font-weight: 800; font-size: .8rem; }
+.mini-console { margin-top: 18px; border: 1px dashed var(--primary); border-radius: 18px; padding: 16px; background: #eef4ff; color: var(--primary-dark); font-weight: 800; }
+.shop-grid button, .ai-grid button { border: 0; border-radius: 12px; padding: 10px 12px; background: #eef4ff; color: var(--primary); font-weight: 800; cursor: pointer; }
+.shop-grid ul, .feature-list, .queue-list { color: var(--muted); line-height: 1.8; padding-left: 20px; }
+.promo-form output { color: var(--primary); font-weight: 900; }
+.modal { display: none; position: fixed; inset: 0; z-index: 20; place-items: center; padding: 20px; background: rgba(15,23,42,.72); }
+.modal.is-open { display: grid; }
+.modal__panel { width: min(520px, 100%); border-radius: 28px; padding: 28px; background: #fff; box-shadow: var(--shadow); }
+.ad-progress { height: 12px; overflow: hidden; border-radius: 99px; background: #e7edf7; margin: 22px 0; }
+.ad-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(135deg, var(--primary), var(--accent)); transition: width .25s ease; }
+.admin-kpis, .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 22px 0; }
+.admin-kpis article, .ai-grid article { border: 1px solid rgba(255,255,255,.16); border-radius: 20px; padding: 18px; background: rgba(255,255,255,.08); }
+.admin-kpis span, .ai-grid p { color: #cbd5e1; }
+.admin-kpis strong { display: block; margin-top: 8px; font-size: 1.5rem; }
+.ai-grid { grid-template-columns: repeat(4, 1fr); }
+.ai-grid span { display: inline-flex; margin: 8px 0 14px; padding: 6px 10px; border-radius: 999px; background: rgba(34,197,94,.16); color: #bbf7d0; font-weight: 800; }
+.ai-grid button { background: rgba(255,255,255,.14); color: #fff; }
+
+@media (max-width: 900px) {
+  .admin-kpis, .ai-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .admin-kpis, .ai-grid { grid-template-columns: 1fr; }
+}
