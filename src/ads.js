@@ -1,8 +1,9 @@
-import { ads } from './data.js';
+import { appState } from './state.js';
+import { recordAdView } from './adEngine.js';
 import { calculateAdSplit, createElement, formatGemas } from './utils.js';
 
 export function renderAdsView() {
-  const rows = ads.map((ad) => {
+  const rows = appState.ads.map((ad) => {
     const split = calculateAdSplit(ad.value);
     return `<tr><td>${ad.advertiser}</td><td>${formatGemas(ad.value)}</td><td>${ad.views}</td><td>${formatGemas(split.user)}</td><td>${formatGemas(split.admin)}</td><td>${ad.status}</td></tr>`;
   }).join('');
@@ -12,12 +13,13 @@ export function renderAdsView() {
       <p class="eyebrow">Sistema de anuncios e IA</p>
       <h2>Ganancias exclusivas por anuncios validados</h2>
       <div class="revenue-split"><div><strong>20%</strong><span>Usuario</span></div><div><strong>80%</strong><span>Administrador</span></div></div>
+      <button class="button button--primary" data-watch-ad="ad-01" type="button">Ver anuncio y ganar</button>
       <div class="table-wrap"><table><thead><tr><th>Anunciante</th><th>Valor</th><th>Vistas</th><th>Usuario</th><th>Admin</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>
     </section>
   `);
 }
 
-export function showAdGate(onComplete) {
+export function showAdGate(onComplete, adId = 'ad-01') {
   const modal = document.querySelector('#adModal');
   const progress = document.querySelector('#adProgress');
   const finishButton = document.querySelector('#finishAdButton');
@@ -40,8 +42,9 @@ export function showAdGate(onComplete) {
   }, 350);
 
   finishButton.onclick = () => {
+    const reward = recordAdView(adId);
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
-    onComplete();
+    onComplete(reward);
   };
 }

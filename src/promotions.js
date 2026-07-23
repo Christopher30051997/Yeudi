@@ -1,32 +1,38 @@
-import { promotionQueue } from './data.js';
+import { appState } from './state.js';
+import { platformConfig } from './config.js';
+import { submitPromotion } from './promotionEngine.js';
 import { calculatePromotionCost, createElement, formatGemas } from './utils.js';
 
 export function renderPromotionsView() {
-  const queue = promotionQueue.map((item) => `<li><strong>${item.platform}</strong> · ${item.target} · ${formatGemas(item.cost)} · ${item.status}</li>`).join('');
+  const queue = appState.promotionQueue.map((promo) => `<li><strong>${promo.platform}:</strong> ${promo.target} · ${formatGemas(promo.cost)} · ${promo.status}</li>`).join('');
+  const platforms = platformConfig.promotionPlatforms.map((platform) => `<option>${platform}</option>`).join('');
   const view = createElement(`
-    <section class="content-card promotion-card" id="promociones">
-      <div>
-        <p class="eyebrow">Promociones de vídeos</p>
-        <h2>Promociona YouTube, TikTok o Facebook</h2>
-        <p>El video queda en espera hasta que el administrador lo apruebe.</p>
-        <ul class="queue-list">${queue}</ul>
+    <section class="content-card" id="promociones">
+      <div class="promotion-card">
+        <div><p class="eyebrow">Promociones de vídeos</p><h2>Promociona YouTube, TikTok o Facebook</h2><ul class="queue-list">${queue}</ul></div>
+        <form class="promo-form">
+          <select name="platform">${platforms}</select>
+          <input name="url" type="url" placeholder="URL del video" value="https://youtube.com/watch?v=demo" />
+          <input name="views" type="number" min="0" value="1000" aria-label="Vistas objetivo" />
+          <input name="likes" type="number" min="0" value="250" aria-label="Me gusta objetivo" />
+          <input name="days" type="number" min="1" value="7" aria-label="Días de promoción" />
+          <output>Costo estimado: ${formatGemas(calculatePromotionCost({ views: 1000, likes: 250, days: 7 }))}</output>
+          <small data-promo-message></small>
+          <button type="submit">Enviar a aprobación</button>
+        </form>
       </div>
-      <form class="promo-form" id="promoCalculator">
-        <input type="url" name="url" placeholder="URL del vídeo" aria-label="URL del vídeo" required />
-        <input type="number" name="views" min="0" placeholder="Vistas deseadas" aria-label="Vistas deseadas" />
-        <input type="number" name="likes" min="0" placeholder="Me gusta deseados" aria-label="Me gusta deseados" />
-        <select name="days" aria-label="Duración de promoción"><option value="1">1 día</option><option value="7">7 días</option><option value="30">30 días</option></select>
-        <button type="submit">Calcular costo</button>
-        <output id="promoCost">Costo estimado: --</output>
-      </form>
     </section>
   `);
 
-  view.querySelector('#promoCalculator').addEventListener('submit', (event) => {
+  const form = view.querySelector('form');
+  form.addEventListener('input', () => {
+    const data = Object.fromEntries(new FormData(form));
+    form.querySelector('output').textContent = `Costo estimado: ${formatGemas(calculatePromotionCost(data))}`;
+  });
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const cost = calculatePromotionCost({ views: Number(data.get('views')), likes: Number(data.get('likes')), days: Number(data.get('days')) });
-    view.querySelector('#promoCost').textContent = `Costo estimado: ${formatGemas(cost)} · Estado: pendiente de aprobación`;
+    const result = submitPromotion(Object.fromEntries(new FormData(form)));
+    form.querySelector('[data-promo-message]').textContent = result.ok ? `Promoción enviada por ${formatGemas(result.cost)}.` : result.errors.join(' ');
   });
 
   return view;

@@ -47,6 +47,7 @@
           <label>Correo electrónico <span>(opcional)</span><input type="email" name="email" placeholder="correo@ejemplo.com" /></label>
           <label>Contraseña<input type="password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required /></label>
           <button class="button button--primary" type="submit">Entrar a mi panel</button>
+          <small class="form-error" data-form-error></small>
           <p class="policy-note">Al registrarte aceptas la privacidad, uso responsable de anuncios, revisión antifraude y aprobación de promociones.</p>
         </form>
       </section>
@@ -106,6 +107,11 @@
     </div>
   </div>
 
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
   <script type="module" src="src/app.js"></script>
 </body>
 </html>

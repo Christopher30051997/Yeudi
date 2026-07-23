@@ -1,9 +1,9 @@
-import { user } from './data.js';
+import { appState } from './state.js';
 import { formatGemas } from './utils.js';
 import { initLanguagePicker } from './language.js';
 import { renderHomeView } from './home.js';
 import { renderGamesView } from './games.js';
-import { renderAdsView } from './ads.js';
+import { renderAdsView, showAdGate } from './ads.js';
 import { renderStoreView } from './store.js';
 import { renderPromotionsView } from './promotions.js';
 import { renderAdminView } from './admin.js';
@@ -20,18 +20,21 @@ const views = {
   admin: renderAdminView,
 };
 
-const stats = [
-  ['Vistas válidas', user.validViews],
-  ['Promos activas', user.activePromotions],
-  ['Juegos jugados', user.gamesPlayed],
-  ['Nivel antifraude', user.fraudLevel],
-];
+function currentStats() {
+  return [
+    ['Vistas válidas', appState.user.validViews],
+    ['Promos activas', appState.user.activePromotions],
+    ['Juegos jugados', appState.user.gamesPlayed],
+    ['Nivel antifraude', appState.user.fraudLevel],
+  ];
+}
 
-function renderStats() {
-  document.querySelector('#statsGrid').innerHTML = stats
+export function renderStats() {
+  document.querySelector('#statsGrid').innerHTML = currentStats()
     .map(([label, value]) => `<article><span>${label}</span><strong>${value}</strong></article>`)
     .join('');
-  document.querySelector('#walletBalance').textContent = formatGemas(user.balance);
+  document.querySelector('#walletBalance').textContent = formatGemas(appState.user.balance);
+  document.querySelector('#userName').textContent = appState.user.name;
 }
 
 function renderView(viewName = 'home') {
@@ -52,7 +55,21 @@ function initNavigation() {
     document.querySelector('#menuButton').setAttribute('aria-expanded', String(!collapsed));
   });
 
-  setupRegistration(() => renderView('home'));
+  document.querySelector('#viewMount').addEventListener('click', (event) => {
+    const watchButton = event.target.closest('[data-watch-ad]');
+    if (!watchButton) return;
+    showAdGate(() => {
+      renderStats();
+      renderView('ads');
+    }, watchButton.dataset.watchAd);
+  });
+
+  setupRegistration(() => {
+    renderStats();
+    renderView('home');
+  });
+
+  window.addEventListener('gemasgo:state-change', renderStats);
 }
 
 initLanguagePicker();

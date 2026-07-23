@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Comprobante Free Fire">
+  <rect width="480" height="280" rx="28" fill="#0f172a"/>
+  <rect x="32" y="36" width="416" height="208" rx="20" fill="#ffffff"/>
+  <text x="56" y="82" font-family="Arial" font-size="28" font-weight="700" fill="#1877f2">GemasGo</text>
+  <text x="56" y="122" font-family="Arial" font-size="18" fill="#172033">Comprobante de diamantes Free Fire</text>
+  <text x="56" y="162" font-family="Arial" font-size="16" fill="#667085">Estado: Entregado</text>
+  <text x="56" y="194" font-family="Arial" font-size="16" fill="#667085">Paquete: 310 diamantes</text>
+  <text x="56" y="226" font-family="Arial" font-size="16" fill="#667085">Validado por IA de Notificación</text>
+</svg>

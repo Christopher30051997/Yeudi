@@ -175,3 +175,10 @@ th { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-s
 .notification-list strong, .notification-list span { display: block; }
 .notification-list span { color: var(--muted); margin-top: 4px; }
 .store-extra { margin-top: 18px; box-shadow: none; }
+.form-error, [data-promo-message], [data-store-message] { color: #b42318; font-weight: 800; min-height: 1.2em; }
+.receipt-card { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; }
+.receipt-card img { width: 100%; border-radius: 14px; border: 1px solid var(--border); }
+.receipt-card small { display: inline-block; margin-top: 8px; color: var(--primary); font-weight: 900; }
+.store-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.admin-panel button { border: 0; border-radius: 10px; padding: 9px 10px; margin: 2px; background: rgba(255,255,255,.16); color: #fff; font-weight: 800; cursor: pointer; }
+@media (max-width: 560px) { .receipt-card { grid-template-columns: 1fr; } }

@@ -1,26 +1,34 @@
 # GemasGo
 
-Prototipo frontend estático de **GemasGo**, una plataforma de monetización con anuncios, juegos instantáneos, tienda, promociones de videos y panel administrador supervisado por IA.
+Aplicación web frontend de **GemasGo**, una plataforma de monetización con anuncios recompensados, juegos instantáneos, tienda, promociones de videos, comprobantes, billetera, controles administrativos e IAs operativas simuladas en el navegador.
+
+## Qué incluye
+
+- Página principal con selector de idioma, mensaje de bienvenida, descripción de políticas y formulario de registro.
+- Registro con validaciones, nombre de usuario en panel y persistencia local.
+- Panel tipo red social con menú de tres rayitas, saldo, estadísticas y vistas internas.
+- Galería de juegos en 4 columnas, anuncio obligatorio antes de iniciar y cada tres partidas.
+- Sistema de anuncios con validación, cálculo 20/80, saldo actualizado, historial y reporte administrativo.
+- Tienda con diamantes Free Fire, vidas, compra de GemasGo con USDT/BTC/ETH/BNB y comprobantes.
+- Promociones para YouTube, TikTok y Facebook con calculadora de costo, cola de revisión y aprobación admin.
+- Panel administrador con KPIs, permisos, señales antifraude, aprobación/rechazo de promociones y control de IAs.
+- IA de Anuncios, IA Antifraude, IA de Notificación e IA Supervisora representadas como módulos separados.
+- PWA básica con manifest, service worker, ícono, robots y documentación de despliegue/legal.
 
 ## Estructura
 
-- `index.html`: página principal, selector de idioma, registro, panel, navegación y modal de anuncios.
-- `styles.css`: diseño responsive inspirado en una red social moderna.
-- `src/app.js`: arranque de la SPA y navegación interna.
-- `src/data.js`: datos mock de usuario, juegos, anuncios, tienda, IAs y promociones.
-- `src/auth.js`: registro local y validaciones visibles de cuenta.
-- `src/games.js`: galería de juegos en 4 columnas y anuncios obligatorios.
-- `src/ads.js`: tabla de anuncios, reparto 20/80 y modal de validación.
-- `src/store.js` + `src/payments.js`: tienda, canjes y paquetes con criptomonedas.
-- `src/promotions.js`: calculadora y cola de aprobación de videos.
-- `src/admin.js` + `src/reports.js`: KPIs, permisos, reportes y señales antifraude.
-- `src/fraud.js`: reglas simuladas de IA antifraude.
-- `src/notifications.js`: comprobantes, mensajes y alertas al usuario.
-- `src/policies.js`: políticas centrales del prototipo.
-- `src/language.js`: detección y cambio entre cinco idiomas.
-- `src/utils.js`: utilidades compartidas.
-- `manifest.webmanifest`, `service-worker.js`, `robots.txt` y `assets/icons/gemasgo.svg`: base PWA y assets públicos.
-- `docs/architecture.md`: descripción técnica del flujo principal.
+- `index.html`: aplicación principal, registro, dashboard, modal de anuncios y service worker.
+- `styles.css`: diseño responsive completo.
+- `src/app.js`: arranque, rutas internas, navegación y refresco de estadísticas.
+- `src/storage.js` y `src/state.js`: persistencia local y estado global.
+- `src/auth.js`, `src/validators.js`: registro y validaciones.
+- `src/adEngine.js`, `src/ads.js`: flujo de anuncios, recompensas y reparto 20/80.
+- `src/games.js`, `src/fraud.js`: juegos instantáneos y antifraude.
+- `src/store.js`, `src/payments.js`, `src/wallet.js`: tienda, cripto y billetera.
+- `src/promotions.js`, `src/promotionEngine.js`: promociones y cálculo de costo.
+- `src/admin.js`, `src/adminActions.js`, `src/reports.js`: administración, reportes y moderación.
+- `src/notifications.js`, `src/policies.js`, `src/config.js`, `src/language.js`, `src/utils.js`: soporte general.
+- `assets/`, `docs/`, `manifest.webmanifest`, `service-worker.js`, `robots.txt`: recursos públicos y documentación.
 
 ## Ejecutar localmente
 
@@ -30,6 +38,6 @@ python3 -m http.server 4173
 
 Luego abre `http://127.0.0.1:4173/index.html`.
 
-## Alcance del prototipo
+## Producción
 
-Este proyecto no incluye backend real, pasarela de pagos, autenticación persistente ni SDKs de anuncios. Los cálculos y datos son simulados para representar cómo funcionaría la plataforma antes de integrar servicios reales.
+La aplicación funciona completa en frontend con `localStorage`. Para dinero real, anuncios reales o cuentas reales, conecta las mismas capas a servicios backend seguros de autenticación, pagos, anuncios y almacenamiento de comprobantes.

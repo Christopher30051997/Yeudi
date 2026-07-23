@@ -1,12 +1,13 @@
-import { games } from './data.js';
+import { appState, commitState } from './state.js';
 import { createElement } from './utils.js';
 import { showAdGate } from './ads.js';
 import { getFraudVerdict } from './fraud.js';
+import { shouldShowGameAd } from './adEngine.js';
 
-let totalPlays = 0;
+let totalPlays = appState.user.gamesPlayed;
 
 export function renderGamesView() {
-  const cards = games.map((game) => `
+  const cards = appState.games.map((game) => `
     <article class="game-card">
       <span>${game.icon}</span>
       <p>${game.category}</p>
@@ -26,14 +27,17 @@ export function renderGamesView() {
   view.addEventListener('click', (event) => {
     const button = event.target.closest('[data-play-game]');
     if (!button) return;
-    const game = games.find((item) => item.id === button.dataset.playGame);
-    const requiresAd = totalPlays === 0 || totalPlays % 3 === 0;
-    const startGame = () => {
+    const game = appState.games.find((item) => item.id === button.dataset.playGame);
+    const startGame = (reward = 0) => {
       totalPlays += 1;
-      game.plays += 1;
-      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total de partidas: ${totalPlays}. IA Antifraude: ${getFraudVerdict(totalPlays)}.`;
+      commitState((state) => {
+        const savedGame = state.games.find((item) => item.id === game.id);
+        savedGame.plays += 1;
+        state.user.gamesPlayed = totalPlays;
+      });
+      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total: ${totalPlays}. Recompensa por anuncio: ${reward} GG. IA Antifraude: ${getFraudVerdict(totalPlays)}.`;
     };
-    if (requiresAd) showAdGate(startGame);
+    if (shouldShowGameAd(totalPlays)) showAdGate(startGame);
     else startGame();
   });
 
