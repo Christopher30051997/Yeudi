@@ -1,6 +1,7 @@
 import { games } from './data.js';
 import { createElement } from './utils.js';
 import { showAdGate } from './ads.js';
+import { getFraudVerdict } from './fraud.js';
 
 let totalPlays = 0;
 
@@ -30,7 +31,7 @@ export function renderGamesView() {
     const startGame = () => {
       totalPlays += 1;
       game.plays += 1;
-      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total de partidas: ${totalPlays}.`;
+      view.querySelector('#gameConsole').textContent = `${game.title} iniciado. Partida #${game.plays} de este juego. Total de partidas: ${totalPlays}. IA Antifraude: ${getFraudVerdict(totalPlays)}.`;
     };
     if (requiresAd) showAdGate(startGame);
     else startGame();

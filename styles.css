@@ -170,3 +170,8 @@ th { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-s
 @media (max-width: 560px) {
   .admin-kpis, .ai-grid { grid-template-columns: 1fr; }
 }
+.notification-list { display: grid; gap: 14px; }
+.notification-list div { border: 1px solid var(--border); border-radius: 18px; padding: 16px; background: #f8fbff; }
+.notification-list strong, .notification-list span { display: block; }
+.notification-list span { color: var(--muted); margin-top: 4px; }
+.store-extra { margin-top: 18px; box-shadow: none; }

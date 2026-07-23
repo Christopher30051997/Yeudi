@@ -8,11 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/gemasgo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="app" class="app-shell">
-    <header class="public-header" id="inicio">
+    <header class="hero public-header" id="inicio">
       <nav class="topbar" aria-label="Navegación principal">
         <a class="brand" href="#inicio" aria-label="GemasGo inicio">
           <span class="brand__gem">◆</span>
@@ -69,6 +71,7 @@
           <a href="#anuncios" data-view="ads">📺 Anuncios</a>
           <a href="#tienda" data-view="store">🛒 Tienda</a>
           <a href="#promociones" data-view="promotions">🚀 Promociones</a>
+          <a href="#notificaciones" data-view="notifications">🔔 Comprobantes</a>
           <a href="#admin" data-view="admin">🔐 Admin</a>
         </aside>
 
@@ -76,7 +79,7 @@
           <div class="feed-header">
             <div>
               <p class="eyebrow">Panel del usuario</p>
-              <h2 id="panel-title">Bienvenido a tu centro GemasGo</h2>
+              <h2 id="panel-title">Bienvenido, <span id="userName">Invitado GemasGo</span></h2>
             </div>
             <div class="wallet-card"><span>Saldo</span><strong id="walletBalance">12,480 GG</strong></div>
           </div>

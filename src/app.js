@@ -7,6 +7,8 @@ import { renderAdsView } from './ads.js';
 import { renderStoreView } from './store.js';
 import { renderPromotionsView } from './promotions.js';
 import { renderAdminView } from './admin.js';
+import { renderNotificationsView } from './notifications.js';
+import { setupRegistration } from './auth.js';
 
 const views = {
   home: renderHomeView,
@@ -14,6 +16,7 @@ const views = {
   ads: renderAdsView,
   store: renderStoreView,
   promotions: renderPromotionsView,
+  notifications: renderNotificationsView,
   admin: renderAdminView,
 };
 
@@ -49,11 +52,7 @@ function initNavigation() {
     document.querySelector('#menuButton').setAttribute('aria-expanded', String(!collapsed));
   });
 
-  document.querySelector('#registro').addEventListener('submit', (event) => {
-    event.preventDefault();
-    renderView('home');
-    document.querySelector('#panel').scrollIntoView({ behavior: 'smooth' });
-  });
+  setupRegistration(() => renderView('home'));
 }
 
 initLanguagePicker();

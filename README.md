@@ -1,30 +1,35 @@
 # GemasGo
 
-Prototipo frontend estático de la plataforma GemasGo: monetización por anuncios, juegos instantáneos, tienda, promociones de vídeos y administración supervisada por IA.
+Prototipo frontend estático de **GemasGo**, una plataforma de monetización con anuncios, juegos instantáneos, tienda, promociones de videos y panel administrador supervisado por IA.
 
 ## Estructura
 
-- `index.html`: documento principal y shell de la aplicación.
-- `styles.css`: diseño visual, tarjetas, layout tipo red social y responsive.
-- `src/app.js`: inicialización de navegación, estadísticas y vistas.
-- `src/data.js`: datos mock de usuarios, juegos, anuncios, tienda, IA y promociones.
-- `src/language.js`: selector de idioma basado en el navegador.
-- `src/games.js`: galería de juegos y anuncio obligatorio antes de jugar/cada 3 partidas.
-- `src/ads.js`: reportes de anuncios y modal de validación.
-- `src/store.js`: tienda con diamantes, vidas, cripto y comprobantes.
-- `src/promotions.js`: calculadora de costo de promoción y cola de revisión.
-- `src/admin.js`: panel administrador con KPIs, acciones y control de IA.
-- `src/home.js`: resumen de monetización e IA.
-- `src/utils.js`: utilidades de formato, creación DOM y cálculos.
+- `index.html`: página principal, selector de idioma, registro, panel, navegación y modal de anuncios.
+- `styles.css`: diseño responsive inspirado en una red social moderna.
+- `src/app.js`: arranque de la SPA y navegación interna.
+- `src/data.js`: datos mock de usuario, juegos, anuncios, tienda, IAs y promociones.
+- `src/auth.js`: registro local y validaciones visibles de cuenta.
+- `src/games.js`: galería de juegos en 4 columnas y anuncios obligatorios.
+- `src/ads.js`: tabla de anuncios, reparto 20/80 y modal de validación.
+- `src/store.js` + `src/payments.js`: tienda, canjes y paquetes con criptomonedas.
+- `src/promotions.js`: calculadora y cola de aprobación de videos.
+- `src/admin.js` + `src/reports.js`: KPIs, permisos, reportes y señales antifraude.
+- `src/fraud.js`: reglas simuladas de IA antifraude.
+- `src/notifications.js`: comprobantes, mensajes y alertas al usuario.
+- `src/policies.js`: políticas centrales del prototipo.
+- `src/language.js`: detección y cambio entre cinco idiomas.
+- `src/utils.js`: utilidades compartidas.
+- `manifest.webmanifest`, `service-worker.js`, `robots.txt` y `assets/icons/gemasgo.svg`: base PWA y assets públicos.
+- `docs/architecture.md`: descripción técnica del flujo principal.
 
 ## Ejecutar localmente
 
 ```bash
-python -m http.server 4173
+python3 -m http.server 4173
 ```
 
-Luego abrir `http://127.0.0.1:4173/index.html`.
+Luego abre `http://127.0.0.1:4173/index.html`.
 
-## Alcance
+## Alcance del prototipo
 
-Este prototipo no incluye backend real, autenticación persistente, pagos cripto reales ni integración con redes sociales. Está organizado como base frontend para conectar esas piezas posteriormente.
+Este proyecto no incluye backend real, pasarela de pagos, autenticación persistente ni SDKs de anuncios. Los cálculos y datos son simulados para representar cómo funcionaría la plataforma antes de integrar servicios reales.
